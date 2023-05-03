@@ -8,23 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\38599\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Marko\\.nuget\\packages\\": {},
+    "F:\\Program Files root\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\38599\\source\\repos\\Players guide\\Players guide\\Players guide.csproj",
+      "projectUniqueName": "C:\\Users\\Marko\\source\\repos\\MarkoCutura56\\PlayersGuide\\Players guide\\Players guide\\Players guide.csproj",
       "projectName": "Players guide",
-      "projectPath": "C:\\Users\\38599\\source\\repos\\Players guide\\Players guide\\Players guide.csproj",
-      "packagesPath": "C:\\Users\\38599\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\38599\\source\\repos\\Players guide\\Players guide\\obj\\",
+      "projectPath": "C:\\Users\\Marko\\source\\repos\\MarkoCutura56\\PlayersGuide\\Players guide\\Players guide\\Players guide.csproj",
+      "packagesPath": "C:\\Users\\Marko\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Marko\\Source\\Repos\\MarkoCutura56\\PlayersGuide\\Players guide\\Players guide\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "F:\\Program Files root\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\38599\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Marko\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -56,8 +56,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -66,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

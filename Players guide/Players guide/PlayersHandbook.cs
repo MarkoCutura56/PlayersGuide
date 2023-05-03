@@ -5,7 +5,7 @@ namespace PlayersHandbook
     using System.Reflection.PortableExecutable;
     using System.Transactions;
     using static System.Console;
-
+    using PlayersGuideClasses;
     static class Exercise
     {
         public static int Consolasdefense()
@@ -346,16 +346,16 @@ namespace PlayersHandbook
         }
         public static int TheReplicatorOfTdo()
         {
-            int[] firstArray= new int[5];
+            int[] firstArray = new int[5];
             int[] secondArray = new int[5];
 
             Console.BackgroundColor = ConsoleColor.Black;
             WriteLine("Fill the array:");
 
             Console.BackgroundColor = ConsoleColor.Blue;
-            for (int i=0;i<firstArray.Length;i++)
+            for (int i = 0; i < firstArray.Length; i++)
             {
-                
+
                 firstArray[i] = Convert.ToInt32(ReadLine());
             }
 
@@ -363,7 +363,7 @@ namespace PlayersHandbook
             WriteLine("Array Filled");
 
             Console.BackgroundColor = ConsoleColor.Red;
-            for (int i=0;i<firstArray.Length;i++)
+            for (int i = 0; i < firstArray.Length; i++)
             {
                 secondArray[i] = firstArray[i];
             }
@@ -411,7 +411,252 @@ namespace PlayersHandbook
             return 0;
         }
 
-    }
+        public static int askfornumberinrange(string text, int min, int max)
+        {
+            int intnum = Convert.ToInt32(text);
+            if (intnum > min && intnum < max)
+            {
+                WriteLine($"number is:{text}");
+            }
+            return 0;
+        }
+        public static int Countdown(int Number)
+        {
+            WriteLine($"Current Number is {Convert.ToString(Number)}");
+            if (Number > 0)
+            {
+                Number--;
+                Countdown(Number);
+            }
+            return 0;
+        }
+
+        public static int huntingTheManticore()
+        {
+
+
+            int manticoreDistance = 0;
+            int manticoreMaxHealth = 10;
+            int manticoreHealth = manticoreMaxHealth;
+
+            int consolasMaxHealth = 15;
+            int consolasHealth = consolasMaxHealth;
+            int consolasDistance = 0;
+
+            int turnNumber = 0;
+            int cannonDamage = 1;
+            WriteLine("Player 1, how fat away from the city do you want to station the Manticore?");
+            manticoreDistance = Convert.ToInt32(ReadLine());
+            Console.Clear();
+            WriteLine("Player 2, it is your turn.");
+            while (manticoreHealth > 0 && consolasHealth > 0)
+            {
+                cannonDamage = turnNumber++;
+                cannonDamage = cannonDamageCalculator(turnNumber);
+
+
+                Console.BackgroundColor = ConsoleColor.Magenta;
+                WriteLine("-----------------------------------------------------------");
+                Console.BackgroundColor = ConsoleColor.Red;
+                Write($"STATUS: Round: {turnNumber}  City: {consolasHealth}/{consolasMaxHealth}  Manticore: {manticoreHealth}/{manticoreMaxHealth}\n" +
+                      $"The cannon is expected to deal {cannonDamage} damage this turn.\n" +
+                      $"Enter desired cannon range: ");
+                Console.BackgroundColor = ConsoleColor.Black;
+                consolasDistance = Convert.ToInt32(ReadLine());
+
+
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                if (consolasDistance > manticoreDistance)
+                {
+                    WriteLine("That round OVERSHOT the target.");
+                }
+                else if (consolasDistance < manticoreDistance)
+                {
+                    WriteLine("That round FELLSHORT of the target.");
+                }
+                else
+                {
+                    WriteLine("That round was a DIRECT HIT!");
+                    manticoreHealth = manticoreHealth - cannonDamage;
+                }
+                Console.BackgroundColor = ConsoleColor.Black;
+
+                consolasHealth--;
+
+            }
+
+            if (consolasHealth <= 0)
+            {
+                WriteLine("CITY OF CONSOLAS is DESTROYED");
+            }
+            if (manticoreHealth <= 0)
+            {
+                WriteLine("MANTICORE is DESTROYED");
+            }
+            Console.BackgroundColor = ConsoleColor.Black;
+
+
+            static int cannonDamageCalculator(int parTurnNumber)
+            {
+                int normalDamage = 1;
+                int fireDamage = 3;
+                int electricDamage = 5;
+                int fireElectricDamage = 10;
+
+                if (parTurnNumber % 3 == 0 && parTurnNumber % 5 == 0)
+                {
+
+                    //fire electric blast
+                    return (fireElectricDamage);
+                }
+                else if (parTurnNumber % 3 == 0)
+                {
+                    //fire blast
+                    return (fireDamage);
+                }
+                else if (parTurnNumber % 5 == 0)
+                {
+                    //electric blast
+                    return (electricDamage);
+                }
+                else
+                {
+                    return (normalDamage);
+                }
+
+            }
+            return (0);
+        }
+        public static int simulasTest()
+        {
+            chestState currectState = chestState.Open;
+            chestState wantedState;
+            while (true)
+            {
+
+
+                switch (currectState)
+                {
+                    case chestState.Lock:
+                        WriteLine("Chest is Locked, What do you want to do?");
+                        wantedState = (chestState)Enum.Parse(typeof(chestState), ReadLine());
+                        if (wantedState == chestState.Unlock)
+                        {
+                            currectState = chestState.Close;
+                        }
+                        break;
+
+                    case chestState.Close:
+                        WriteLine("Chest is Closed, What do you want to do?");
+                        wantedState = (chestState)Enum.Parse(typeof(chestState), ReadLine());
+                        if (wantedState == chestState.Lock)
+                        {
+                            currectState = chestState.Lock;
+                        }
+                        else if (wantedState == chestState.Open)
+                        {
+                            currectState = chestState.Open;
+                        }
+                        break;
+                    case chestState.Open:
+                        WriteLine("Chest is Open, What do you want to do?");
+                        wantedState = (chestState)Enum.Parse(typeof(chestState), ReadLine());
+                        if (wantedState == chestState.Close)
+                        {
+                            currectState = chestState.Close;
+                        }
+                        break;
+                }
+
+            }
+            return (0);
+        }
+        public static int simulasSoup()
+        {
+            (foodType FoodType, mainIngredient MainIngredient, seasoning Seasoning) Soup;
+
+            string[] foodTypeNames = Enum.GetNames(typeof(foodType));
+            string[] mainIngredientNames = Enum.GetNames(typeof(mainIngredient));
+            string[] seasoningNames = Enum.GetNames(typeof(seasoning));
+
+            int userInput;
+
+            WriteLine("Food Types to choose from are:");
+            for (int i = 0; i < foodTypeNames.Length; i++)
+            {
+                WriteLine($"{i + 1}.{foodTypeNames[i],10}");
+            }
+            WriteLine("\nMain ingredient to choose from are:");
+            for (int i = 0; i < mainIngredientNames.Length; i++)
+            {
+                WriteLine($"{i + 1}.{mainIngredientNames[i],10}");
+            }
+            WriteLine("\nSeasonings to choose from are:");
+            for (int i = 0; i < seasoningNames.Length; i++)
+            {
+                WriteLine($"{i + 1}.{seasoningNames[i],10}");
+            }
+
+            WriteLine();
+            WriteLine("Choose Food Type by Number:");
+            userInput =(Convert.ToInt32(ReadLine()) - 1);
+            if (userInput < Enum.GetNames(typeof(foodType)).Length && userInput >= 0)
+            {
+                Soup.FoodType = (foodType)userInput;
+            }
+            else
+            {
+                WriteLine("Invalid Food Type Number, setting to number 1 on menu");
+                Soup.FoodType = (foodType)(0);
+            }
+            
+
+            WriteLine("Choose Main ingredient:");
+            userInput = (Convert.ToInt32(ReadLine()) - 1);
+            if (userInput < Enum.GetNames(typeof(mainIngredient)).Length && userInput >= 0)
+            {
+                Soup.MainIngredient = (mainIngredient)userInput;
+            }
+            else
+            {
+                WriteLine("Invalid Food Type Number, setting to number 1 on menu");
+                Soup.MainIngredient = (mainIngredient)(0);
+            }
+
+            WriteLine("Choose Seasoning:");
+            userInput = (Convert.ToInt32(ReadLine()) - 1);
+            if (userInput < Enum.GetNames(typeof(seasoning)).Length && userInput>=0)
+            {
+                Soup.Seasoning = (seasoning)userInput;
+            }
+            else
+            {
+                WriteLine("Invalid Food Type Number, setting to number 1 on menu");
+                Soup.Seasoning = (seasoning)(0);
+            }
+
+
+            WriteLine();
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
+            WriteLine($"You have choosen: {Soup.Seasoning} {Soup.MainIngredient} {Soup.FoodType}");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            return (0);
+        }
+        public static int VinFletchersArrowsCall()
+         {
+            Arrowhead WantedArrowHead;
+
+           
+            VinFletchersArrows Arrow2 = new(Arrowhead.steel, Fletching.turkeyfeather, 70);
+            
+            WriteLine($"Cost of an Arrow is {Arrow2.GetCost()}");
+            return (0);
+         }
+
+
+}
 
 
 
